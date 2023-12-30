@@ -12,15 +12,27 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "ttOne.helloWorld",
-      "title": "Hello World"
-    }],
+    "commands": [
+      {
+        "command": "ttOne.copy",
+        "title": "Copy to 10xCopy"
+      },
+      {
+        "command": "ttOne.list",
+        "title": "View 10x Copied Values"
+      }
+    ],
     "keybindings": [
       {
-        "command": "ttOne.helloWorld",
-        "key": "ctrl+c",
-        "mac": "cmd+c",
+        "command": "ttOne.copy",
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "when": "editorFocus"
+      },
+      {
+        "command": "ttOne.list",
+        "key": "ctrl+l",
+        "mac": "cmd+l",
         "when": "editorFocus"
       }
     ]
@@ -31,12 +43,16 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
+    "@types/vscode": "^1.85.0",
     "@vscode/test-cli": "^0.0.4",
-    "@vscode/test-electron": "^2.3.8"
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "mongodb-client-encryption": "^6.0.0",
+    "os-dns-native": "^1.2.0"
   }
 }
