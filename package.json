@@ -20,6 +20,10 @@
       {
         "command": "ttOne.list",
         "title": "View 10x Copied Values"
+      },
+      {
+        "command": "ttOne.clearlist",
+        "title": "Clear VsClibBoard"
       }
     ],
     "keybindings": [
@@ -33,6 +37,12 @@
         "command": "ttOne.list",
         "key": "ctrl+l",
         "mac": "cmd+l",
+        "when": "editorFocus"
+      },
+      {
+        "command": "ttOne.clearlist",
+        "key": "ctrl+d",
+        "mac": "cmd+d",
         "when": "editorFocus"
       }
     ]
