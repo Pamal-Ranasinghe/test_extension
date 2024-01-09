@@ -6,18 +6,19 @@ const vscode = require("vscode");
 function activate(context) {
   try {
     const outputChannel = vscode.window.createOutputChannel("10xCopyOutput");
+
+    // vscode.subscriptions.push(disposable);
     const valueArray = [];
     let clipboardText = "";
+    clearVsClipBoardStatusBarItem();
 
     let copy = vscode.commands.registerCommand("ttOne.copy", async () => {
       try {
         clipboardText = await vscode.env.clipboard.readText();
-        if (clipboardText.length != 0) {
+        if (clipboardText.length != 0 && typeof clipboardText === "string") {
           if (valueArray.length < 10) {
             valueArray.push(clipboardText);
-            vscode.window.showInformationMessage(
-              "Clipboard value moved to 10xCopy : " + clipboardText
-            );
+            vscode.window.showInformationMessage("Moved to VsClipBoard");
           } else {
             vscode.window.showWarningMessage("10xCopy limit exceeded");
           }
@@ -30,37 +31,36 @@ function activate(context) {
         );
       }
     });
-    
+
+    const arrayManipulate = (listArray) => {
+      return listArray.map((option, index) => ({
+        label: `${option}`,
+        buttons: [
+          {
+            iconPath: new vscode.ThemeIcon("eye"), // Use an eye icon as an example
+            command: "command.view",
+            tooltip: "View",
+          },
+          {
+            iconPath: new vscode.ThemeIcon("trash"),
+            command: "command.trash",
+            tooltip: "Remove",
+          },
+          {
+            iconPath: new vscode.ThemeIcon("file"),
+            command: "command.copy",
+            tooltip: "Copy",
+          },
+        ],
+      }));
+    };
 
     let listAllValues = vscode.commands.registerCommand(
       "ttOne.list",
       async () => {
         const quickPick = vscode.window.createQuickPick();
 
-        const quickPickItems = valueArray.map((option, index) => ({
-          // label: `value ${index + 1}`,
-          label: `${option}`,
-          // Fdescription: option,
-          buttons: [
-            {
-              iconPath: new vscode.ThemeIcon("eye"), // Use an eye icon as an example
-              command: "command.view",
-              tooltip: "View",
-            },
-            {
-              iconPath: new vscode.ThemeIcon("trash"),
-              command: "command.trash",
-              tooltip: "Remove",
-            },
-            {
-              iconPath: new vscode.ThemeIcon("file"),
-              command: "command.copy",
-              tooltip: "Copy",
-            },
-          ],
-        }));
-
-        quickPick.items = quickPickItems;
+        quickPick.items = arrayManipulate(valueArray);
 
         quickPick.placeholder = "Select an option";
 
@@ -71,22 +71,19 @@ function activate(context) {
           const selectedIndexTriggerButton = valueArray.indexOf(details);
 
           if (button.button.tooltip == "View") {
-            
             outputChannel.replace(details);
             outputChannel.show(true);
             context.subscriptions.push(outputChannel);
-
           } else if (button.button.tooltip == "Remove") {
-
             if (selectedIndexTriggerButton !== -1) {
               valueArray.splice(selectedIndexTriggerButton, 1);
             }
-            quickPick.dispose();
-            vscode.window.showWarningMessage('Option Deleted');
 
+            quickPick.items = arrayManipulate(valueArray);
+            vscode.window.showWarningMessage("Removed from VsClipBoard");
           } else if (button.button.tooltip == "Copy") {
-            vscode.env.clipboard.writeText(details)
-            vscode.window.showInformationMessage(`Value Copied`);
+            vscode.env.clipboard.writeText(details);
+            vscode.window.showInformationMessage(`Copied from VsClipBoard`);
           } else {
             vscode.window.showErrorMessage(`Something went wrong`);
           }
@@ -96,7 +93,7 @@ function activate(context) {
           if (selection && selection[0]) {
             // const selectedLabel = selection[0].description;
             const selectedLabel = selection[0].label;
-           
+
             const editor = vscode.window.activeTextEditor;
 
             if (editor) {
@@ -112,13 +109,32 @@ function activate(context) {
       }
     );
 
-    context.subscriptions.push(copy, listAllValues);
+    let clearClibBoard = vscode.commands.registerCommand(
+      "ttOne.clearlist",
+      async () => {
+        await outputChannel.hide();
+        valueArray.splice(0, valueArray.length);
+        vscode.window.showInformationMessage(`VsClipBoard Cleared`);
+      }
+    );
+
+    context.subscriptions.push(copy, listAllValues, clearClibBoard);
   } catch (error) {
     vscode.window.showInformationMessage(`Something went wrong - ${error}`);
   }
 }
 
-// This method is called when your extension is deactivated
+const clearVsClipBoardStatusBarItem = () => {
+  const statusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left
+  );
+  
+  statusBarItem.text = "$(trash) Clear VsClipBoard";
+  statusBarItem.command = "ttOne.clearlist";
+  statusBarItem.show();
+  const disposable = vscode.Disposable.from(statusBarItem);
+};
+
 function deactivate() {}
 
 module.exports = {
