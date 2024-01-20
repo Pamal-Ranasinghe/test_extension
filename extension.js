@@ -5,18 +5,19 @@ const vscode = require("vscode");
  */
 function activate(context) {
   try {
-    const outputChannel = vscode.window.createOutputChannel("10xCopyOutput");
+    const outputChannel = vscode.window.createOutputChannel("VsClipBoard");
 
     // vscode.subscriptions.push(disposable);
     const valueArray = [];
     let clipboardText = "";
-    clearVsClipBoardStatusBarItem();
+    let statusBarItem = clearVsClipBoardStatusBarItem();
 
     let copy = vscode.commands.registerCommand("ttOne.copy", async () => {
       try {
         clipboardText = await vscode.env.clipboard.readText();
         if (clipboardText.length != 0 && typeof clipboardText === "string") {
           if (valueArray.length < 10) {
+            statusBarItem.show();
             valueArray.push(clipboardText);
             vscode.window.showInformationMessage("Moved to VsClipBoard");
           } else {
@@ -47,7 +48,7 @@ function activate(context) {
             tooltip: "Remove",
           },
           {
-            iconPath: new vscode.ThemeIcon("file"),
+            iconPath: new vscode.ThemeIcon("files"),
             command: "command.copy",
             tooltip: "Copy",
           },
@@ -62,7 +63,7 @@ function activate(context) {
 
         quickPick.items = arrayManipulate(valueArray);
 
-        quickPick.placeholder = "Select an option";
+        quickPick.placeholder = "VsClipBoard Search";
 
         quickPick.show();
 
@@ -80,10 +81,10 @@ function activate(context) {
             }
 
             quickPick.items = arrayManipulate(valueArray);
-            vscode.window.showWarningMessage("Removed from VsClipBoard");
+            vscode.window.showWarningMessage("Removed from the VsClipBoard");
           } else if (button.button.tooltip == "Copy") {
             vscode.env.clipboard.writeText(details);
-            vscode.window.showInformationMessage(`Copied from VsClipBoard`);
+            vscode.window.showInformationMessage(`Copied from the VsClipBoard`);
           } else {
             vscode.window.showErrorMessage(`Something went wrong`);
           }
@@ -113,6 +114,7 @@ function activate(context) {
       "ttOne.clearlist",
       async () => {
         await outputChannel.hide();
+        await statusBarItem.hide();
         valueArray.splice(0, valueArray.length);
         vscode.window.showInformationMessage(`VsClipBoard Cleared`);
       }
@@ -131,8 +133,9 @@ const clearVsClipBoardStatusBarItem = () => {
   
   statusBarItem.text = "$(trash) Clear VsClipBoard";
   statusBarItem.command = "ttOne.clearlist";
-  statusBarItem.show();
-  const disposable = vscode.Disposable.from(statusBarItem);
+  // statusBarItem.show();
+  // return vscode.Disposable.from(statusBarItem);
+  return statusBarItem;
 };
 
 function deactivate() {}
