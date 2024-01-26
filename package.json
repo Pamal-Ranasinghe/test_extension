@@ -1,7 +1,7 @@
 {
   "name": "codeclip",
   "displayName": "codeclip",
-  "description": "codeclip is an extension that can be used to a clipboard in Visula Studio Code",
+  "description": "codeclip is an extension that can be used to a clipboard in Visual Studio Code",
   "version": "0.0.1",
   "publisher": "Pamal Ranasinghe",
   "icon": "images/clipboard_icon.png",
