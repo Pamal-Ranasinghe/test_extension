@@ -7,7 +7,6 @@ function activate(context) {
   try {
     const outputChannel = vscode.window.createOutputChannel("VsClipBoard");
 
-    // vscode.subscriptions.push(disposable);
     const valueArray = [];
     let clipboardText = "";
     let statusBarItem = clearVsClipBoardStatusBarItem();
@@ -79,8 +78,13 @@ function activate(context) {
             if (selectedIndexTriggerButton !== -1) {
               valueArray.splice(selectedIndexTriggerButton, 1);
             }
-
             quickPick.items = arrayManipulate(valueArray);
+
+            if(valueArray.length == 0){
+              statusBarItem.hide();
+              outputChannel.hide();
+            }
+            
             vscode.window.showWarningMessage("Removed from the VsClipBoard");
           } else if (button.button.tooltip == "Copy") {
             vscode.env.clipboard.writeText(details);
@@ -137,6 +141,11 @@ const clearVsClipBoardStatusBarItem = () => {
   // return vscode.Disposable.from(statusBarItem);
   return statusBarItem;
 };
+
+// const statusBarClearAllOptionsHide = (statusBarItem) => {
+//   statusBarItem.
+// }
+
 
 function deactivate() {}
 
