@@ -5,22 +5,22 @@ const vscode = require("vscode");
  */
 function activate(context) {
   try {
-    const outputChannel = vscode.window.createOutputChannel("VsClipBoard");
+    const outputChannel = vscode.window.createOutputChannel("Codeclip");
 
     const valueArray = [];
     let clipboardText = "";
-    let statusBarItem = clearVsClipBoardStatusBarItem();
+    let statusBarItem = clearCodeclipStatusBarItem();
 
-    let copy = vscode.commands.registerCommand("ttOne.copy", async () => {
+    let copy = vscode.commands.registerCommand("codeclip.copy", async () => {
       try {
         clipboardText = await vscode.env.clipboard.readText();
         if (clipboardText.length != 0 && typeof clipboardText === "string") {
           if (valueArray.length < 10) {
             statusBarItem.show();
             valueArray.push(clipboardText);
-            vscode.window.showInformationMessage("Moved to VsClipBoard");
+            vscode.window.showInformationMessage("Moved to Codeclip clipboard");
           } else {
-            vscode.window.showWarningMessage("10xCopy limit exceeded");
+            vscode.window.showWarningMessage("Codeclip clipboard limit exceeded");
           }
         } else {
           vscode.window.showWarningMessage("Value is empty");
@@ -37,7 +37,7 @@ function activate(context) {
         label: `${option}`,
         buttons: [
           {
-            iconPath: new vscode.ThemeIcon("eye"), // Use an eye icon as an example
+            iconPath: new vscode.ThemeIcon("eye"), 
             command: "command.view",
             tooltip: "View",
           },
@@ -56,13 +56,13 @@ function activate(context) {
     };
 
     let listAllValues = vscode.commands.registerCommand(
-      "ttOne.list",
+      "codeclip.list",
       async () => {
         const quickPick = vscode.window.createQuickPick();
 
         quickPick.items = arrayManipulate(valueArray);
 
-        quickPick.placeholder = "VsClipBoard Search";
+        quickPick.placeholder = "Codeclip Search";
 
         quickPick.show();
 
@@ -85,10 +85,10 @@ function activate(context) {
               outputChannel.hide();
             }
             
-            vscode.window.showWarningMessage("Removed from the VsClipBoard");
+            vscode.window.showWarningMessage("Removed from the Codeclip clipboard");
           } else if (button.button.tooltip == "Copy") {
             vscode.env.clipboard.writeText(details);
-            vscode.window.showInformationMessage(`Copied from the VsClipBoard`);
+            vscode.window.showInformationMessage(`Copied from the Codeclip clipboard`);
           } else {
             vscode.window.showErrorMessage(`Something went wrong`);
           }
@@ -96,7 +96,6 @@ function activate(context) {
 
         quickPick.onDidChangeSelection((selection) => {
           if (selection && selection[0]) {
-            // const selectedLabel = selection[0].description;
             const selectedLabel = selection[0].label;
 
             const editor = vscode.window.activeTextEditor;
@@ -115,12 +114,12 @@ function activate(context) {
     );
 
     let clearClibBoard = vscode.commands.registerCommand(
-      "ttOne.clearlist",
+      "codeclip.clearlist",
       async () => {
         await outputChannel.hide();
         await statusBarItem.hide();
         valueArray.splice(0, valueArray.length);
-        vscode.window.showInformationMessage(`VsClipBoard Cleared`);
+        vscode.window.showInformationMessage(`Codeclip Cleared`);
       }
     );
 
@@ -130,21 +129,19 @@ function activate(context) {
   }
 }
 
-const clearVsClipBoardStatusBarItem = () => {
-  const statusBarItem = vscode.window.createStatusBarItem(
-    vscode.StatusBarAlignment.Left
-  );
-  
-  statusBarItem.text = "$(trash) Clear VsClipBoard";
-  statusBarItem.command = "ttOne.clearlist";
-  // statusBarItem.show();
-  // return vscode.Disposable.from(statusBarItem);
-  return statusBarItem;
+const clearCodeclipStatusBarItem = () => {
+  try{
+    const statusBarItem = vscode.window.createStatusBarItem(
+      vscode.StatusBarAlignment.Left
+    );
+    
+    statusBarItem.text = "$(trash) Clear Codeclip";
+    statusBarItem.command = "codeclip.clearlist";
+    return statusBarItem;
+  }catch(error){
+    vscode.window.showInformationMessage(`Something went wrong - ${error}`);
+  }
 };
-
-// const statusBarClearAllOptionsHide = (statusBarItem) => {
-//   statusBarItem.
-// }
 
 
 function deactivate() {}

@@ -16,33 +16,33 @@
   "contributes": {
     "commands": [
       {
-        "command": "ttOne.copy",
-        "title": "Copy to 10xCopy"
+        "command": "codeclip.copy",
+        "title": "Copy to codeclip clipboard"
       },
       {
-        "command": "ttOne.list",
-        "title": "View 10x Copied Values"
+        "command": "codeclip.list",
+        "title": "View codeclip clipboard Values"
       },
       {
-        "command": "ttOne.clearlist",
-        "title": "Clear VsClibBoard"
+        "command": "codeclip.clearlist",
+        "title": "Clear codeclip clipboard"
       }
     ],
     "keybindings": [
       {
-        "command": "ttOne.copy",
+        "command": "codeclip.copy",
         "key": "ctrl+b",
         "mac": "cmd+b",
         "when": "editorFocus"
       },
       {
-        "command": "ttOne.list",
+        "command": "codeclip.list",
         "key": "ctrl+l",
         "mac": "cmd+l",
         "when": "editorFocus"
       },
       {
-        "command": "ttOne.clearlist",
+        "command": "codeclip.clearlist",
         "key": "ctrl+d",
         "mac": "cmd+d",
         "when": "editorFocus"
