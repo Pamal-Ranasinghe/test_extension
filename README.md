@@ -19,7 +19,7 @@ Codeclip is an extension which can be used as a clipboard in Visual Studio Code.
 
 - By pressing <kbd>ctrl</kbd> + <kbd>c</kbd> and <kbd>ctrl</kbd> + <kbd>b</kbd> you can move copied values to codeclip.
 
-![Relative Image](images/readme_images/ctrl+B.gif)
+![Relative Image](images/readme_images/CTRL+B.gif)
 
 - You can copy and moved other resources values to codeclip
 
@@ -27,7 +27,7 @@ Codeclip is an extension which can be used as a clipboard in Visual Studio Code.
 
 - By pressing <kbd>ctrl</kbd> + <kbd>l</kbd> or <kbd>cmd</kbd> + <kbd>l</kbd> you can list down all the values.
 
-![Relative Image](images/readme_images/ctrl+L.gif)
+![Relative Image](images/readme_images/CTRL+L.gif)
 
 - By clicking on perticular option you can paste it down to the editor.
 
