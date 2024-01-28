@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/Pamal-Ranasinghe/test_extension"
   },
-  "publisher": "Pamal Ranasinghe",
+  "publisher": "codeclip",
   "icon": "images/clipboard_icon.png",
   "engines": {
     "vscode": "^1.85.0"
