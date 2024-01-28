@@ -21,7 +21,7 @@ Codeclip is an extension which can be used as a clipboard in Visual Studio Code.
 
 ![Relative Image](images/readme_images/CTRL+B.gif)
 
-- You can copy and moved other resources values to codeclip
+- You can copy and move other resources values to codeclip
 
 ![Relative Image](images/readme_images/COPY_GLOBAL.gif)
 
