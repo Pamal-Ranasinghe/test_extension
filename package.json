@@ -1,8 +1,10 @@
 {
-  "name": "ttOne",
-  "displayName": "test_one",
-  "description": "test description",
+  "name": "codeclip",
+  "displayName": "Codeclip",
+  "description": "Codeclip is an extension that can be used as a clipboard in Visual Studio Code",
   "version": "0.0.1",
+  "publisher": "Pamal Ranasinghe",
+  "icon": "images/clipboard_icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -12,10 +14,40 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "ttOne.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "codeclip.copy",
+        "title": "Copy to codeclip clipboard"
+      },
+      {
+        "command": "codeclip.list",
+        "title": "View codeclip clipboard Values"
+      },
+      {
+        "command": "codeclip.clearlist",
+        "title": "Clear codeclip clipboard"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "codeclip.copy",
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "when": "editorFocus"
+      },
+      {
+        "command": "codeclip.list",
+        "key": "ctrl+l",
+        "mac": "cmd+l",
+        "when": "editorFocus"
+      },
+      {
+        "command": "codeclip.clearlist",
+        "key": "ctrl+d",
+        "mac": "cmd+d",
+        "when": "editorFocus"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
@@ -23,12 +55,16 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
+    "@types/vscode": "^1.85.0",
     "@vscode/test-cli": "^0.0.4",
-    "@vscode/test-electron": "^2.3.8"
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "mongodb-client-encryption": "^6.0.0",
+    "os-dns-native": "^1.2.0"
   }
 }

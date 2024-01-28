@@ -1,65 +1,67 @@
-# ttOne README
+# Codeclip
 
-This is the README for your extension "ttOne". After writing up a brief description, we recommend including the following sections.
+Codeclip is an extension which can be used as a clipboard in Visual Studio Code. But keep this in mind, this is not an ordinary clipboard.
 
-## Features
+## How you can use this extension ?
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Press <kbd>ctrl</kbd> + <kbd>c</kbd> to copy value ( Just normal copy ) and Press <kbd>ctrl</kbd> + <kbd>b</kbd> to move copied value to Codeclip ( In mac press <kbd>cmd</kbd> + <kbd>c</kbd> and <kbd>cmd</kbd> + <kbd>b</kbd> )
 
-For example if there is an image subfolder under your extension project workspace:
+- Press <kbd>ctrl</kbd> + <kbd>l</kbd> to list all the copied values ( In mac press <kbd>cmd</kbd> + <kbd>l</kbd> )
 
-\!\[feature X\]\(images/feature-x.png\)
+- Click on one option that you want to paste it on editor or you can copy that value using copy button which appears in each option.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Press <kbd>ctrl</kbd> + <kbd>d</kbd> to delete all the values in Codeclip ( In mac press <kbd>cmd</kbd> + <kbd>d</kbd> )
+
+
+## Features in advance
+
+> Use respective key binds for Mac
+
+- By pressing <kbd>ctrl</kbd> + <kbd>c</kbd> and <kbd>ctrl</kbd> + <kbd>b</kbd> you can move copied values to codeclip.
+
+![Relative Image](images/readme_images/CTRL+B.gif)
+
+- You can copy and moved other resources values to codeclip
+
+![Relative Image](images/readme_images/COPY_GLOBAL.gif)
+
+- By pressing <kbd>ctrl</kbd> + <kbd>l</kbd> or <kbd>cmd</kbd> + <kbd>l</kbd> you can list down all the values.
+
+![Relative Image](images/readme_images/CTRL+L.gif)
+
+- By clicking on perticular option you can paste it down to the editor.
+
+![Relative Image](images/readme_images/PASTE_BY_CLICKING.gif)
+
+- You can view clipboard values one by one.
+
+![Relative Image](images/readme_images/VIEW_VALUES.gif)
+
+- You can delete clipboard values one by one.
+
+![Relative Image](images/readme_images/DELETE_VALUES.gif)
+
+- You can clear all the clipboard values.
+
+![Relative Image](images/readme_images/CLEAR_CLIPBOARD.gif)
+
+## What can this extension do ?
+
+> You can move any string value to Codeclip (As an example you can move copied code from ChatGPT to Codeclip)
+
+> Search any copied value.
+
+> Delete all the values on Codeclip.
+
+> Delete value one by one.
+
+> Copy values one by one from Codeclip .
+
+> View each Codeclip value.
+
+> You can clip 10 values on Codeclip.
+
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+> Visual Studio Code version must be higher than 1.85.1
