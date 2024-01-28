@@ -2,8 +2,6 @@
 
 All notable changes to the "Codeclip" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [Released-0.0.3]
 
-## [Unreleased]
-
-- Initial release
+- Initial release : 1/28/2024
