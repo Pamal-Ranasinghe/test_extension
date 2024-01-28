@@ -23,6 +23,18 @@ Codeclip is an extension which can be used as a clipboard in Visual Studio Code.
 
 ![Relative Image](images/readme_images/CTRL+L.gif)
 
+- By clicking on perticular option you can paste it down to the editor.
+
+![Relative Image](images/readme_images/PASTE_BY_CLICKING.gif)
+
+- You can view clipboard values one by one
+
+![Relative Image](images/readme_images/VIEW_VALUES.gif)git a
+
+- You can delete clipboard values one by one
+
+![Relative Image](images/readme_images/VIEW_VALUES.gif)
+
 ## What can this extension do ?
 
 > You can move any string value to Codeclip (As an example you can move copied code from ChatGPT to Codeclip)
