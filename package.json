@@ -3,6 +3,10 @@
   "displayName": "Codeclip",
   "description": "Codeclip is an extension that can be used as a clipboard in Visual Studio Code",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pamal-Ranasinghe/test_extension"
+  },
   "publisher": "Pamal Ranasinghe",
   "icon": "images/clipboard_icon.png",
   "engines": {
